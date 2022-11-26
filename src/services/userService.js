@@ -10,4 +10,10 @@ const handleLoginAPI = async (email, password) => {
   console.log("response", response);
   return response;
 };
-export { handleLoginAPI };
+
+const handleGetAllUserAPI = async (userId) => {
+  const response = await axios.get("/api/get-all-user", { id: userId });
+  return response;
+};
+
+export { handleLoginAPI, handleGetAllUserAPI };

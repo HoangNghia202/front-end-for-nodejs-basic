@@ -16,4 +16,11 @@ const handleGetAllUserAPI = async (userId) => {
   return response;
 };
 
-export { handleLoginAPI, handleGetAllUserAPI };
+const handleCreateNewUserAPI = async (userData) => {
+  const response = await axios.post("/api/create-new-user", userData);
+  console.log(">>>response create new user", response);
+
+  return response;
+};
+
+export { handleLoginAPI, handleGetAllUserAPI, handleCreateNewUserAPI };

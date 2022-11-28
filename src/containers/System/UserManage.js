@@ -5,15 +5,16 @@ import { connect } from "react-redux";
 import {
   handleGetAllUserAPI,
   handleCreateNewUserAPI,
+  handleDeleteUserAPI,
 } from "../../services/userService";
+import { toast } from "react-toastify";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { Form, FormGroup, Label, Input } from "reactstrap";
 class UserManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      modal: true,
+      modal: false,
       newUser: {
         email: "",
         password: "",
@@ -78,10 +79,23 @@ class UserManage extends Component {
       try {
         await handleCreateNewUserAPI(this.state.newUser);
         await this.componentDidMount();
+        toast.success("Create new user successfully!");
       } catch (error) {
+        toast.error("Create new user failed!");
         console.log(">>err create new user: ", error.response);
       }
       await this.toggle();
+    }
+  };
+
+  handleDeleteUser = async (userId) => {
+    try {
+      await handleDeleteUserAPI(userId);
+      await this.componentDidMount();
+      toast.success("Delete user successfully!");
+    } catch (error) {
+      console.log("err delete user: ", error.response);
+      toast.error("Delete user failed!");
     }
   };
 
@@ -123,7 +137,14 @@ class UserManage extends Component {
                       <td>{item.address}</td>
                       <td className="text-center">
                         <button className="btn btn-primary">Edit</button> &nbsp;
-                        <button className="btn btn-danger">Delete</button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => {
+                            this.handleDeleteUser(item.id);
+                          }}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   );

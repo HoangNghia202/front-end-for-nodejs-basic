@@ -23,4 +23,14 @@ const handleCreateNewUserAPI = async (userData) => {
   return response;
 };
 
-export { handleLoginAPI, handleGetAllUserAPI, handleCreateNewUserAPI };
+const handleDeleteUserAPI = async (userId) => {
+  const response = await axios.post("/api/delete-user", { id: userId });
+  return response;
+};
+
+export {
+  handleLoginAPI,
+  handleGetAllUserAPI,
+  handleCreateNewUserAPI,
+  handleDeleteUserAPI,
+};

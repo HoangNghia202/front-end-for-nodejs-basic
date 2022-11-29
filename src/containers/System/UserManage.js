@@ -9,12 +9,14 @@ import {
 } from "../../services/userService";
 import { toast } from "react-toastify";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import ModalEditUser from "./ModalEditUser";
 class UserManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      modal: false,
+      modalCreate: false,
+      modalEdit: false,
       newUser: {
         email: "",
         password: "",
@@ -25,12 +27,19 @@ class UserManage extends Component {
         role: "1",
         gender: 1,
       },
+      userEdit: {},
     };
   }
 
-  toggle = () => {
+  toggleCreate = () => {
     this.setState({
-      modal: !this.state.modal,
+      modalCreate: !this.state.modalCreate,
+    });
+  };
+
+  toggleEdit = () => {
+    this.setState({
+      modalEdit: !this.state.modalEdit,
     });
   };
 
@@ -80,11 +89,11 @@ class UserManage extends Component {
         await handleCreateNewUserAPI(this.state.newUser);
         await this.componentDidMount();
         toast.success("Create new user successfully!");
+        this.toggleCreate();
       } catch (error) {
         toast.error("Create new user failed!");
         console.log(">>err create new user: ", error.response);
       }
-      await this.toggle();
     }
   };
 
@@ -98,8 +107,22 @@ class UserManage extends Component {
       toast.error("Delete user failed!");
     }
   };
+  async componentDidUpdate(prevState) {
+    if (this.state.modalEdit !== prevState.modalEdit) {
+      await this.componentDidMount();
+    }
+  }
+
+  handleClickEdit = (user) => {
+    this.setState({
+      userEdit: user,
+    });
+    this.toggleEdit();
+  };
 
   render() {
+    console.log(">>userEdit", this.state.userEdit);
+
     console.log(">>newUser", this.state.newUser);
     return (
       <>
@@ -108,7 +131,7 @@ class UserManage extends Component {
           <div className="text-left my-2">
             <button
               className="btn btn-primary float-left"
-              onClick={this.toggle}
+              onClick={this.toggleCreate}
             >
               <i className="fas fa-plus"> Add New User</i>{" "}
             </button>
@@ -136,7 +159,13 @@ class UserManage extends Component {
                       <td>{item.lastName}</td>
                       <td>{item.address}</td>
                       <td className="text-center">
-                        <button className="btn btn-primary">Edit</button> &nbsp;
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => this.handleClickEdit(item)}
+                        >
+                          Edit
+                        </button>{" "}
+                        &nbsp;
                         <button
                           className="btn btn-danger"
                           onClick={() => {
@@ -155,13 +184,13 @@ class UserManage extends Component {
 
         <div>
           <Modal
-            isOpen={this.state.modal}
-            toggle={this.toggle}
+            isOpen={this.state.modalCreate}
+            toggle={this.toggleCreate}
             className={"modal-create-user"}
             size="lg"
             centered={true}
           >
-            <ModalHeader className="modal-header" toggle={this.toggle}>
+            <ModalHeader className="modal-header" toggle={this.toggleCreate}>
               Create new user
             </ModalHeader>
             <ModalBody>
@@ -303,6 +332,12 @@ class UserManage extends Component {
             </ModalFooter> */}
           </Modal>
         </div>
+        <ModalEditUser
+          modal={this.state.modalEdit}
+          toggle={this.toggleEdit}
+          userEdit={this.state.userEdit}
+          componentDidMount={this.componentDidMount}
+        />
       </>
     );
   }

@@ -28,9 +28,15 @@ const handleDeleteUserAPI = async (userId) => {
   return response;
 };
 
+const handleUpdateUserAPI = async (userData) => {
+  const response = await axios.put("/api/update-user", userData);
+  return response;
+};
+
 export {
   handleLoginAPI,
   handleGetAllUserAPI,
   handleCreateNewUserAPI,
   handleDeleteUserAPI,
+  handleUpdateUserAPI,
 };

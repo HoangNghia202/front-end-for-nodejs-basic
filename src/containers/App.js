@@ -5,7 +5,7 @@ import { ConnectedRouter as Router } from "connected-react-router";
 import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import HomePage from "./HomePage/HomePage";
 import {
   userIsAuthenticated,
   userIsNotAuthenticated,
@@ -59,6 +59,8 @@ class App extends Component {
                   path={path.SYSTEM}
                   component={userIsAuthenticated(System)}
                 />
+
+                <Route path={path.HOMEPAGE} component={HomePage} />
               </Switch>
             </span>
             <ToastContainer

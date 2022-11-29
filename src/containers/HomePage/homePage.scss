@@ -1,0 +1,116 @@
+.home-banner {
+  height: 667px;
+  background: url("../../assets/images/bookingcare-cover-4.jpg") center center
+    no-repeat;
+  background-size: cover;
+  justify-content: center;
+
+  .banner-content {
+    text-align: center;
+    padding-top: 100px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+  }
+  .banner-search {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    .search-bar {
+      background-color: yellow;
+      border-radius: 30px;
+      padding: 0 30px;
+      i {
+        font-size: 16px;
+        padding-right: 10px;
+      }
+      input {
+        width: 350px;
+        background-color: yellow;
+        height: 50px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        outline: none;
+      }
+    }
+  }
+  .banner-option {
+    display: block;
+    height: 400px;
+
+    .option-content {
+      margin-top: 200px;
+      padding-top: 5px;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(252, 252, 255, 0.52),
+        rgba(103, 99, 102, 0.73)
+      );
+      -webkit-box-shadow: 0px -10px 3px rgba(252, 252, 255, 0.52);
+      -moz-box-shadow: 0px -10px 3px rgba(252, 252, 255, 0.52);
+      box-shadow: 0px -10px 3px rgba(252, 252, 255, 0.52);
+      .option-item-up {
+        opacity: 1px;
+        display: flex;
+        justify-content: center;
+        ul {
+          display: flex;
+
+          li {
+            &:hover {
+              cursor: pointer;
+              p {
+                color: #49bce2;
+              }
+            }
+            p {
+              font-weight: bold;
+            }
+            text-align: center;
+            list-style: none;
+            padding: 0 40px;
+            i {
+              font-size: 30px;
+              padding: 10px;
+              height: 50px;
+              width: 50px;
+              background-color: whitesmoke;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+      .option-item-down {
+        display: flex;
+        justify-content: center;
+        ul {
+          display: flex;
+
+          li {
+            &:hover {
+              cursor: pointer;
+              p {
+                color: #49bce2;
+              }
+            }
+            p {
+              font-weight: bold;
+            }
+            text-align: center;
+            list-style: none;
+            padding: 0 40px;
+            width: 200px;
+            i {
+              font-size: 30px;
+              padding: 10px;
+              height: 50px;
+              width: 50px;
+              background-color: whitesmoke;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -47,16 +47,6 @@ class UserManage extends Component {
     alert("add new user");
   };
 
-  async componentDidMount() {
-    let response = await handleGetAllUserAPI(null);
-    console.log(">>errCode", response.data.errCode);
-    if (response.data.errCode === 0) {
-      this.setState({ users: response.data.user }, () => {
-        console.log(">>check users", this.state.users);
-      });
-    }
-  }
-
   handleChangeInput = (event) => {
     this.setState({
       newUser: {
@@ -107,11 +97,6 @@ class UserManage extends Component {
       toast.error("Delete user failed!");
     }
   };
-  async componentDidUpdate(prevState) {
-    if (this.state.modalEdit !== prevState.modalEdit) {
-      await this.componentDidMount();
-    }
-  }
 
   handleClickEdit = (user) => {
     this.setState({
@@ -119,6 +104,21 @@ class UserManage extends Component {
     });
     this.toggleEdit();
   };
+
+  async componentDidMount() {
+    let response = await handleGetAllUserAPI(null);
+    console.log(">>errCode", response.data.errCode);
+    if (response.data.errCode === 0) {
+      this.setState({ users: response.data.user }, () => {
+        console.log(">>check users", this.state.users);
+      });
+    }
+  }
+  async componentDidUpdate(prevState) {
+    if (this.state.modalEdit !== prevState.modalEdit) {
+      await this.componentDidMount();
+    }
+  }
 
   render() {
     console.log(">>userEdit", this.state.userEdit);

@@ -1,0 +1,52 @@
+.header-homepage {
+  height: 60px;
+  background-color: #f6f6f6;
+  border-bottom: solid 1px black;
+  padding: 5px 20px;
+  position: stickyc;
+
+  .header-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    .left-content {
+      width: 25%;
+      height: 100%;
+      display: flex;
+      .menu-bar {
+        cursor: pointer;
+      }
+      .header-logo {
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+        background: url("../../../assets/images/logo.svg") no-repeat center;
+      }
+    }
+    .center-content {
+      width: 60%;
+      height: 100%;
+      display: flex;
+      .child-center-content {
+        width: 25%;
+        text-align: center;
+      }
+    }
+    .right-content {
+      width: 15%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .support {
+        display: flex;
+        i {
+        }
+        h5 {
+          color: grey;
+        }
+      }
+    }
+  }
+}

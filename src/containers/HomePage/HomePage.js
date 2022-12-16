@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Specialty from "./Session/Specialty";
 import HeaderHomePage from "./Session/HeaderHomePage";
+import DoctorSession from "./Session/Doctor";
 import "./homePage.scss";
-import { FontAwesomeIcon } from "@fortawesome/fontawesome-free-webfonts";
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -78,6 +79,13 @@ class HomePage extends Component {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="home-specialty">
+          <Specialty />
+        </div>
+        <div className="home-doctor">
+          <DoctorSession />
         </div>
       </>
     );

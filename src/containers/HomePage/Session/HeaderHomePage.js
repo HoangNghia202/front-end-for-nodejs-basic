@@ -2,12 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./headerHomePage.scss";
+import { LANGUAGES } from "../../../utils/constant";
+import { toast } from "react-toastify";
+import { changeLanguageApp } from "../../../store/actions/appActions";
 class HeaderHomePage extends Component {
   constructor(props) {
     super(props);
   }
   state = {};
+  changeLanguage = (language) => {
+    this.props.changeLanguageAppRedux(language);
+    alert("change language to " + language);
+  };
   render() {
+    console.log("this.props.languageApp", this.props.language);
+
     return (
       <>
         <div className="header-homepage">
@@ -36,26 +45,46 @@ class HeaderHomePage extends Component {
                 <p className="small">Khám sức khoe tổng quát</p>
               </div>
             </div>
-            <div className="right-content">
+            <div className="right-content justify-content-center align-items-center">
               <div className="support">
                 <i class="fas fa-duotone fa-headset fa-lg"></i>
                 <h5>Hỗ trợ</h5>
               </div>
+              <div>
+                <span
+                  className="language-vi px-2 font-weight-bold cursor-pointer"
+                  onClick={() => this.changeLanguage("vi")}
+                >
+                  VI
+                </span>
+              </div>
+              <div>
+                <span
+                  className="language-en px-2 font-weight-bold cursor-pointer"
+                  onClick={() => this.changeLanguage("en")}
+                >
+                  EN
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        <div className="container"></div>
       </>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    isLoggedIn: state.user.isLoggedIn,
+    language: state.app.language,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+  };
 };
 
-export default HeaderHomePage;
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderHomePage);

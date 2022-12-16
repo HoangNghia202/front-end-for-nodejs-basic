@@ -1,0 +1,42 @@
+.specialty-session {
+  padding-top: 20px;
+  height: 250px;
+  background-color: #ececec;
+  .slider-wrapper {
+    height: 90%;
+    .slider-content {
+      .specialty-image {
+        height: 90%;
+      }
+    }
+  }
+}
+
+.slick-prev {
+  left: 0px;
+  background-color: #49bce2;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: 1;
+  &:hover {
+    background-color: #49bce2 !important;
+  }
+  &:focus {
+    background-color: #49bce2 !important;
+  }
+}
+
+.slick-next {
+  right: 0px;
+  background-color: #49bce2;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  &:hover {
+    background-color: #49bce2 !important;
+  }
+  &:focus {
+    background-color: #49bce2 !important;
+  }
+}

@@ -6,6 +6,7 @@ import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./HomePage/HomePage";
+import CustomScrollbars from "../components/CustomScrollbars";
 import {
   userIsAuthenticated,
   userIsNotAuthenticated,
@@ -19,7 +20,7 @@ import Header from "./Header/Header";
 import System from "../routes/System";
 
 import { CustomToastCloseButton } from "../components/CustomToast";
-import ConfirmModal from "../components/ConfirmModal";
+import ConfirmModal from "../components/CustomScrollbars";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -48,21 +49,22 @@ class App extends Component {
             <ConfirmModal />
             {this.props.isLoggedIn && <Header />}
 
-            <span className="content-container">
-              <Switch>
-                <Route path={path.HOME} exact component={Home} />
-                <Route
-                  path={path.LOGIN}
-                  component={userIsNotAuthenticated(Login)}
-                />
-                <Route
-                  path={path.SYSTEM}
-                  component={userIsAuthenticated(System)}
-                />
-
-                <Route path={path.HOMEPAGE} component={HomePage} />
-              </Switch>
-            </span>
+            <div className="content-container">
+              <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
+                <Switch>
+                  <Route path={path.HOME} exact component={Home} />
+                  <Route
+                    path={path.LOGIN}
+                    component={userIsNotAuthenticated(Login)}
+                  />
+                  <Route
+                    path={path.SYSTEM}
+                    component={userIsAuthenticated(System)}
+                  />
+                  <Route path={path.HOMEPAGE} component={HomePage} />
+                </Switch>
+              </CustomScrollbars>
+            </div>
             <ToastContainer
               position="top-right"
               autoClose={2000}
